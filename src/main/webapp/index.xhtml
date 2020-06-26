@@ -8,16 +8,36 @@
         <ui:define name="title">RichFaces Sample</ui:define>
 
         <ui:define name="body">
-            <h:form prependId="false">
-                <h:outputLabel value="Name:" for="nameInput" />
-                <h:inputText id="nameInput" value="#{richBean.name}">
-                    <a4j:ajax event="keyup" render="output" />
-                </h:inputText>
-                <h:panelGroup id="output">
-                    <h:outputText value="Hello #{richBean.name}!"
-                        rendered="#{not empty richBean.name}" />
-                </h:panelGroup>
-            </h:form>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 mt-2">
+                        <h:form prependId="false">
+                            <h:outputLabel value="Name:" for="nameInput" />
+                            <h:inputText id="nameInput" value="#{richBean.name}">
+                                <a4j:ajax event="keyup" render="output" />
+                            </h:inputText>
+                            <h:panelGroup id="output">
+                                <h:outputText value="Hello #{richBean.name}!"
+                                    rendered="#{not empty richBean.name}" />
+                            </h:panelGroup>
+                        </h:form>
+                    </div>
+                </div>
+                <h:form>
+                   <a4j:commandButton type="button" class="btn btn-primary" value="Show Screen Size" render="infoPanel">
+                      <a4j:param name="w" value="screen.width"
+                                 assignTo="#{paramBean.screenWidth}" noEscape="true" />
+                      <a4j:param name="h" value="screen.height"
+                                 assignTo="#{paramBean.screenHeight}" noEscape="true" />
+                   </a4j:commandButton>
+                   <h:panelGrid columns="2" id="infoPanel">
+                      <h:outputText value="Width:" />
+                      <h:outputText value="#{paramBean.screenWidth}" />
+                      <h:outputText value="Height:" />
+                      <h:outputText value="#{paramBean.screenHeight}" />
+                   </h:panelGrid>
+                </h:form>
+            </div>
         </ui:define>
     </ui:composition>
 </body>
